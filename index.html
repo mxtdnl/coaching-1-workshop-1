@@ -123,17 +123,16 @@ button:focus-visible {
   margin-top: 1.5rem;
 }
 
-.instruction {
-  font-size: clamp(1rem, 1.5vw, 1.2rem);
+.vote-heading {
+  font-size: clamp(1.2rem, 1.8vw, 1.4rem);
+  font-weight: 600;
+  margin-top: 1.5rem;
   color: var(--brown-light);
-  font-style: italic;
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
 }
 
-/* Outcome blocks on reveal screens */
 .outcome {
-  border-left: 1px solid var(--brown-light);
+  display: none;
+  border-left: 4px solid var(--brown-light);
   padding: 1rem 1.2rem;
   margin-bottom: 1rem;
 }
@@ -150,6 +149,10 @@ button:focus-visible {
   border-left: 4px solid var(--burgundy);
 }
 
+.outcome.chosen-s4 {
+  border-left: 4px solid var(--purple);
+}
+
 .outcome-text {
   font-size: clamp(1.1rem, 1.6vw, 1.3rem);
   margin-bottom: 0;
@@ -159,7 +162,6 @@ button:focus-visible {
   font-weight: 700;
 }
 
-/* Pattern callout */
 .callout {
   background: var(--cream);
   border-left: 4px solid var(--brown);
@@ -172,27 +174,18 @@ button:focus-visible {
   margin-bottom: 0;
 }
 
-/* Discuss screens */
 .discuss-prompt {
   font-style: italic;
   font-size: clamp(1.4rem, 2vw, 1.6rem);
   margin-bottom: 0.8rem;
 }
 
-.facilitator-note {
-  font-size: clamp(0.95rem, 1.3vw, 1.1rem);
-  color: var(--brown-light);
-  margin-top: 1rem;
-}
-
-/* Geometric motifs */
 .motif {
   position: absolute;
   z-index: 0;
   pointer-events: none;
 }
 
-/* Circle motif - Scenario 1 */
 .motif-circle {
   width: 300px;
   height: 300px;
@@ -203,7 +196,6 @@ button:focus-visible {
   right: -60px;
 }
 
-/* Triangle motif - Scenario 2 */
 .motif-triangle {
   width: 0;
   height: 0;
@@ -216,7 +208,6 @@ button:focus-visible {
   background: transparent;
 }
 
-/* Cross motif - Scenario 3 */
 .motif-cross {
   opacity: 0.12;
   top: 50%;
@@ -249,10 +240,40 @@ button:focus-visible {
   transform: translateX(-50%);
 }
 
-/* Title screen composition */
+.motif-s4 {
+  opacity: 0.12;
+  bottom: -60px;
+  right: -60px;
+  width: 300px;
+  height: 300px;
+}
+
+.motif-s4::before {
+  content: '';
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: var(--purple);
+  top: 30px;
+  left: 30px;
+}
+
+.motif-s4::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 100px solid transparent;
+  border-right: 100px solid transparent;
+  border-bottom: 180px solid var(--orange);
+  top: 70px;
+  left: 50px;
+}
+
 .title-composition {
   position: relative;
-  width: 300px;
+  width: 360px;
   height: 200px;
   margin: 2rem auto 0;
 }
@@ -312,10 +333,20 @@ button:focus-visible {
   transform: translateX(-50%);
 }
 
-/* Debrief composition (smaller) */
+.title-composition .tc-diamond {
+  position: absolute;
+  width: 55px;
+  height: 55px;
+  background: linear-gradient(135deg, var(--purple) 50%, var(--orange) 50%);
+  opacity: 0.7;
+  top: 60px;
+  left: 260px;
+  transform: rotate(45deg);
+}
+
 .debrief-composition {
   position: relative;
-  width: 200px;
+  width: 260px;
   height: 140px;
   margin: 0 auto 2rem;
 }
@@ -375,7 +406,17 @@ button:focus-visible {
   transform: translateX(-50%);
 }
 
-/* Debrief scenario lines */
+.debrief-composition .dc-diamond {
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  background: linear-gradient(135deg, var(--purple) 50%, var(--orange) 50%);
+  opacity: 0.7;
+  top: 55px;
+  left: 175px;
+  transform: rotate(45deg);
+}
+
 .scenario-line {
   font-size: clamp(1.2rem, 1.8vw, 1.4rem);
   margin-bottom: 0.6rem;
@@ -385,6 +426,12 @@ button:focus-visible {
 .scenario-line .icon-purple { color: var(--purple); }
 .scenario-line .icon-orange { color: var(--orange); }
 .scenario-line .icon-burgundy { color: var(--burgundy); }
+.scenario-line .icon-s4 {
+  background: linear-gradient(135deg, var(--purple), var(--orange));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 
 .final-line {
   font-size: clamp(1.6rem, 2.5vw, 2rem);
@@ -392,14 +439,12 @@ button:focus-visible {
   margin-top: 2rem;
 }
 
-/* Reveal screen scrollable area */
 .reveal-body {
   max-height: calc(100vh - 160px);
   overflow-y: auto;
   padding-right: 0.5rem;
 }
 
-/* Hide scrollbar styling for cleaner look */
 .reveal-body::-webkit-scrollbar {
   width: 6px;
 }
@@ -412,9 +457,13 @@ button:focus-visible {
   background: var(--brown-light);
 }
 
-/* Text align center for title/debrief */
 .text-center {
   text-align: center;
+}
+
+.consequence-svg {
+  text-align: center;
+  margin-bottom: 1rem;
 }
 
 @media (max-width: 768px) {
@@ -435,6 +484,7 @@ button:focus-visible {
       <div class="tc-circle"></div>
       <div class="tc-triangle"></div>
       <div class="tc-cross"></div>
+      <div class="tc-diamond"></div>
     </div>
     <button onclick="showScreen('intro')">Begin &rarr;</button>
   </div>
@@ -445,7 +495,7 @@ button:focus-visible {
   <div class="content">
     <p>Goal setting is the most prescribed tool in personal development. Specific, challenging goals have been shown to boost performance across hundreds of studies.</p>
     <p>But what if the prescription has side effects?</p>
-    <p>You are about to meet three students starting university &mdash; just like you. Each one sets a goal. Your job: decide what they should do.</p>
+    <p>You are about to meet four students starting university, just like you. Each one sets a goal. Your job: decide what they should do.</p>
     <button onclick="showScreen('s1_setup')">Meet the first student &rarr;</button>
   </div>
 </div>
@@ -455,6 +505,22 @@ button:focus-visible {
 <div class="screen" id="s1_setup">
   <div class="motif motif-circle"></div>
   <div class="content">
+    <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto 1.5rem;">
+      <rect x="25" y="132" width="150" height="8" stroke="var(--brown)" stroke-width="3" fill="var(--cream)" rx="1" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="42" y1="140" x2="42" y2="182" stroke="var(--brown)" stroke-width="3" stroke-linecap="round"/>
+      <line x1="158" y1="140" x2="158" y2="182" stroke="var(--brown)" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="78" cy="92" r="14" stroke="var(--brown)" stroke-width="3" fill="var(--cream)"/>
+      <path d="M78 106 Q74 118 66 132" stroke="var(--brown)" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M78 114 Q92 124 98 132" stroke="var(--brown)" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <line x1="66" y1="140" x2="62" y2="180" stroke="var(--brown)" stroke-width="3" stroke-linecap="round"/>
+      <line x1="78" y1="140" x2="82" y2="180" stroke="var(--brown)" stroke-width="3" stroke-linecap="round"/>
+      <rect x="118" y="116" width="32" height="7" rx="1" stroke="var(--brown)" stroke-width="2" fill="var(--cream)"/>
+      <rect x="115" y="108" width="36" height="7" rx="1" stroke="var(--brown)" stroke-width="2" fill="var(--cream)"/>
+      <rect x="117" y="100" width="33" height="7" rx="1" stroke="var(--brown)" stroke-width="2" fill="var(--cream)"/>
+      <rect x="114" y="92" width="37" height="7" rx="1" stroke="var(--brown)" stroke-width="2" fill="var(--cream)"/>
+      <rect x="116" y="84" width="34" height="7" rx="1" stroke="var(--brown)" stroke-width="2" fill="var(--cream)"/>
+      <polygon points="132,22 137,40 156,40 141,50 146,66 132,55 118,66 123,50 108,40 127,40" fill="var(--purple)" stroke="var(--brown)" stroke-width="2" stroke-linejoin="round"/>
+    </svg>
     <p><strong>Alex</strong> has just arrived at university. Their parents are proud. Their school teachers said they had potential. Alex wants to prove them all right.</p>
     <p>In their first coaching meeting, the coach asks: <em>&ldquo;What does success look like for you this year?&rdquo;</em></p>
     <p>Alex thinks for a moment and says: <em>&ldquo;I want to do really well academically. That&rsquo;s the priority.&rdquo;</em></p>
@@ -470,7 +536,7 @@ button:focus-visible {
     <button class="vote-btn" onclick="vote('s1','A')"><strong>A.</strong> &ldquo;Achieve a 3.8 GPA by the end of semester one.&rdquo;</button>
     <button class="vote-btn" onclick="vote('s1','B')"><strong>B.</strong> &ldquo;Study for at least 3 hours every evening, Monday to Friday.&rdquo;</button>
     <button class="vote-btn" onclick="vote('s1','C')"><strong>C.</strong> &ldquo;Do my best across all my modules.&rdquo;</button>
-    <p class="instruction">Teacher: ask for a show of hands, then click the majority choice.</p>
+    <p class="vote-heading">Vote now.</p>
   </div>
 </div>
 
@@ -480,16 +546,47 @@ button:focus-visible {
     <h2>What actually happened</h2>
     <div class="reveal-body">
       <div class="outcome" id="s1_outcome_A">
-        <p class="outcome-text"><span class="outcome-label">A. The 3.8 GPA</span> &mdash; Alex hit 3.82. But by December, they had skipped every social event, dropped out of the sports club they&rsquo;d joined in Week 1, and turned down a team consulting project that didn&rsquo;t count toward their grade. In January, they felt isolated, couldn&rsquo;t explain what skills they&rsquo;d actually built, and had nothing to talk about in interviews except grades.</p>
+        <div class="consequence-svg">
+          <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="15" y="12" width="90" height="80" fill="var(--cream)" stroke="var(--brown)" stroke-width="3" rx="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="15" y1="82" x2="105" y2="82" stroke="var(--brown)" stroke-width="2"/>
+            <circle cx="60" cy="50" r="8" stroke="var(--brown-light)" stroke-width="2" fill="none" opacity="0.4"/>
+            <line x1="60" y1="58" x2="60" y2="75" stroke="var(--brown-light)" stroke-width="2" opacity="0.4"/>
+            <line x1="50" y1="65" x2="70" y2="65" stroke="var(--brown-light)" stroke-width="2" opacity="0.4"/>
+            <path d="M15 100 Q60 95 105 100" stroke="var(--brown-light)" stroke-width="1.5" fill="none" opacity="0.3"/>
+          </svg>
+        </div>
+        <p class="outcome-text"><span class="outcome-label">A. The 3.8 GPA</span>: Alex hit 3.82. But by December, they had skipped every social event, dropped out of the sports club they&rsquo;d joined in Week 1, and turned down a team consulting project that carried no grade weight. In January, they felt isolated, could point to no skills beyond exam technique, and had nothing to talk about in interviews except grades.</p>
       </div>
       <div class="outcome" id="s1_outcome_B">
-        <p class="outcome-text"><span class="outcome-label">B. Three hours every evening</span> &mdash; Alex sat at their desk reliably. But &ldquo;study&rdquo; became passive re-reading. The goal measured time, not learning. By November, Alex was logging hours but retaining little &mdash; and had stopped exercising, seeing friends, or sleeping properly to protect the routine.</p>
+        <div class="consequence-svg">
+          <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="60" cy="48" r="25" fill="var(--cream)" stroke="var(--brown)" stroke-width="3"/>
+            <rect x="48" y="73" width="24" height="14" rx="2" fill="var(--cream)" stroke="var(--brown)" stroke-width="3"/>
+            <line x1="50" y1="79" x2="70" y2="79" stroke="var(--brown)" stroke-width="2"/>
+            <line x1="50" y1="83" x2="70" y2="83" stroke="var(--brown)" stroke-width="2"/>
+            <line x1="60" y1="14" x2="60" y2="6" stroke="var(--brown-light)" stroke-width="1.5" opacity="0.3"/>
+            <line x1="84" y1="30" x2="91" y2="24" stroke="var(--brown-light)" stroke-width="1.5" opacity="0.25"/>
+            <line x1="36" y1="30" x2="29" y2="24" stroke="var(--brown-light)" stroke-width="1.5" opacity="0.25"/>
+            <line x1="90" y1="48" x2="98" y2="48" stroke="var(--brown-light)" stroke-width="1.5" opacity="0.15"/>
+            <line x1="30" y1="48" x2="22" y2="48" stroke="var(--brown-light)" stroke-width="1.5" opacity="0.15"/>
+          </svg>
+        </div>
+        <p class="outcome-text"><span class="outcome-label">B. Three hours every evening</span>: Alex sat at their desk reliably. But &ldquo;study&rdquo; became passive re-reading. The goal measured time rather than learning. By November, Alex was logging hours but retaining little; they had stopped exercising, seeing friends, or sleeping properly to protect the routine.</p>
       </div>
       <div class="outcome" id="s1_outcome_C">
-        <p class="outcome-text"><span class="outcome-label">C. &ldquo;Do my best&rdquo;</span> &mdash; Without a clear target, Alex drifted. Some weeks they worked hard; others they didn&rsquo;t. By mid-semester they couldn&rsquo;t tell whether they were on track and felt anxious but directionless.</p>
+        <div class="consequence-svg">
+          <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M42 95 L48 108 L72 108 L78 95 Z" fill="var(--cream)" stroke="var(--brown)" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M60 95 Q60 65 46 48" fill="none" stroke="var(--brown)" stroke-width="3" stroke-linecap="round"/>
+            <ellipse cx="38" cy="44" rx="14" ry="7" fill="var(--ochre)" stroke="var(--brown)" stroke-width="2" transform="rotate(-35 38 44)"/>
+            <circle cx="36" cy="35" r="7" fill="var(--ochre)" stroke="var(--brown)" stroke-width="2"/>
+          </svg>
+        </div>
+        <p class="outcome-text"><span class="outcome-label">C. &ldquo;Do my best&rdquo;</span>: Without a clear target, Alex drifted. Some weeks they worked hard; others they coasted. By mid-semester they had lost track of whether they were progressing, and felt anxious yet directionless.</p>
       </div>
       <div class="callout">
-        <p><strong>The pattern:</strong> Every option failed &mdash; but not because Alex chose wrong. The problem was upstream. Alex never defined what &ldquo;success at university&rdquo; actually meant beyond one dimension. A single metric replaced a complex aspiration, and everything not measured was abandoned.</p>
+        <p><strong>The pattern:</strong> Every option failed. The source of the failure was upstream. Alex left &ldquo;success at university&rdquo; undefined beyond a single dimension. A single metric replaced a complex aspiration, and everything outside it was abandoned.</p>
       </div>
     </div>
     <button onclick="showScreen('s1_discuss')">Discuss &rarr;</button>
@@ -501,8 +598,7 @@ button:focus-visible {
   <div class="content">
     <h2>To the room:</h2>
     <p class="discuss-prompt">What did Alex actually want? Was it really just a number?</p>
-    <p class="discuss-prompt">What got sacrificed &mdash; and why didn&rsquo;t the goal protect it?</p>
-    <p class="facilitator-note">[Facilitator: allow 90 seconds of discussion. Do not resolve &mdash; name the tension and move on.]</p>
+    <p class="discuss-prompt">What got sacrificed, and why did the goal leave it exposed?</p>
     <button onclick="showScreen('s2_setup')">Meet the next student &rarr;</button>
   </div>
 </div>
@@ -512,9 +608,22 @@ button:focus-visible {
 <div class="screen" id="s2_setup">
   <div class="motif motif-triangle"></div>
   <div class="content">
-    <p><strong>Sam</strong> played a lot of sport at school and wants to stay active at university. In their coaching meeting, Sam says: <em>&ldquo;I want to get properly fit &mdash; not just dabble.&rdquo;</em></p>
+    <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto 1.5rem;">
+      <polygon points="100,25 170,165 30,165" fill="none" stroke="var(--brown)" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M55 150 L70 135 L80 140 L95 120 L105 128 L115 105 L125 115 L135 90 L142 100" fill="none" stroke="var(--orange)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="100" y1="25" x2="100" y2="12" stroke="var(--brown)" stroke-width="3" stroke-linecap="round"/>
+      <polygon points="100,12 110,5 110,19" fill="var(--orange)" stroke="var(--brown)" stroke-width="2" stroke-linejoin="round"/>
+      <circle cx="45" cy="155" r="7" stroke="var(--brown)" stroke-width="3" fill="var(--cream)"/>
+      <line x1="45" y1="162" x2="45" y2="180" stroke="var(--brown)" stroke-width="3" stroke-linecap="round"/>
+      <line x1="38" y1="172" x2="52" y2="172" stroke="var(--brown)" stroke-width="3" stroke-linecap="round"/>
+      <line x1="42" y1="180" x2="38" y2="192" stroke="var(--brown)" stroke-width="3" stroke-linecap="round"/>
+      <line x1="48" y1="180" x2="52" y2="192" stroke="var(--brown)" stroke-width="3" stroke-linecap="round"/>
+      <ellipse cx="40" cy="190" rx="8" ry="3" fill="none" stroke="var(--orange)" stroke-width="2" opacity="0.6"/>
+      <ellipse cx="50" cy="190" rx="8" ry="3" fill="none" stroke="var(--orange)" stroke-width="2" opacity="0.6"/>
+    </svg>
+    <p><strong>Sam</strong> played a lot of sport at school and wants to stay active at university. In their coaching meeting, Sam says: <em>&ldquo;I want to get properly fit: not just dabble.&rdquo;</em></p>
     <p>Together with their coach, Sam sets a goal: <strong>Run a half marathon before the end of the academic year.</strong></p>
-    <p>By week 6, Sam can run 5K comfortably. They feel good. Then life gets busy &mdash; exams, group projects, a part-time job.</p>
+    <p>By week 6, Sam can run 5K comfortably. They feel good. Then life gets busy: exams, group projects, a part-time job.</p>
     <button onclick="showScreen('s2_vote')">What should Sam do now? &rarr;</button>
   </div>
 </div>
@@ -523,10 +632,10 @@ button:focus-visible {
   <div class="motif motif-triangle"></div>
   <div class="content">
     <h2>What should Sam do now?</h2>
-    <button class="vote-btn" onclick="vote('s2','A')"><strong>A.</strong> Push through &mdash; stick to the training plan no matter what. The goal is the goal.</button>
+    <button class="vote-btn" onclick="vote('s2','A')"><strong>A.</strong> Push through: stick to the training plan no matter what. The goal is the goal.</button>
     <button class="vote-btn" onclick="vote('s2','B')"><strong>B.</strong> Quietly drop the half marathon idea. 5K is fine. Move on to other things.</button>
-    <button class="vote-btn" onclick="vote('s2','C')"><strong>C.</strong> Set a harder short-term target to stay motivated &mdash; aim for a 22-minute 5K.</button>
-    <p class="instruction">Teacher: ask for a show of hands, then click the majority choice.</p>
+    <button class="vote-btn" onclick="vote('s2','C')"><strong>C.</strong> Set a harder short-term target to stay motivated: aim for a 22-minute 5K.</button>
+    <p class="vote-heading">Vote now.</p>
   </div>
 </div>
 
@@ -536,16 +645,47 @@ button:focus-visible {
     <h2>What actually happened</h2>
     <div class="reveal-body">
       <div class="outcome" id="s2_outcome_A">
-        <p class="outcome-text"><span class="outcome-label">A. Push through</span> &mdash; Sam forced early morning runs on too little sleep, skipped group project meetings to train, and picked up a knee injury in week 10. After two weeks off, they never went back. The goal that was supposed to build fitness destroyed it.</p>
+        <div class="consequence-svg">
+          <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M35 20 L35 60 Q60 80 85 60 L85 20 Z" fill="var(--cream)" stroke="var(--brown)" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M35 32 Q18 42 35 52" fill="none" stroke="var(--brown)" stroke-width="3" stroke-linecap="round"/>
+            <path d="M85 32 Q102 42 85 52" fill="none" stroke="var(--brown)" stroke-width="3" stroke-linecap="round"/>
+            <rect x="50" y="72" width="20" height="14" fill="var(--cream)" stroke="var(--brown)" stroke-width="3"/>
+            <rect x="40" y="86" width="40" height="8" rx="1" fill="var(--cream)" stroke="var(--brown)" stroke-width="3"/>
+            <path d="M50 28 L48 42 L55 50 L50 65" fill="none" stroke="var(--brown)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <p class="outcome-text"><span class="outcome-label">A. Push through</span>: Sam forced early morning runs on too little sleep, skipped group project meetings to train, and picked up a knee injury in week 10. After two weeks off, they never went back. The fitness goal destroyed the very thing it targeted.</p>
       </div>
       <div class="outcome" id="s2_outcome_B">
-        <p class="outcome-text"><span class="outcome-label">B. Drop it</span> &mdash; Sam felt relieved for a week, then guilty. They&rsquo;d &ldquo;failed.&rdquo; The experience of not finishing what they started eroded their confidence. When a friend suggested joining a climbing club, Sam thought: <em>&ldquo;What&rsquo;s the point? I&rsquo;ll just quit that too.&rdquo;</em></p>
+        <div class="consequence-svg">
+          <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M42 95 L48 108 L72 108 L78 95 Z" fill="var(--cream)" stroke="var(--brown)" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M60 95 Q60 65 46 48" fill="none" stroke="var(--brown)" stroke-width="3" stroke-linecap="round"/>
+            <ellipse cx="38" cy="44" rx="14" ry="7" fill="var(--ochre)" stroke="var(--brown)" stroke-width="2" transform="rotate(-35 38 44)"/>
+            <circle cx="36" cy="35" r="7" fill="var(--ochre)" stroke="var(--brown)" stroke-width="2"/>
+          </svg>
+        </div>
+        <p class="outcome-text"><span class="outcome-label">B. Drop it</span>: Sam felt relieved for a week, then guilty. They&rsquo;d &ldquo;failed.&rdquo; The experience of quitting eroded their confidence. When a friend suggested joining a climbing club, Sam thought: <em>&ldquo;What&rsquo;s the point? I&rsquo;ll just quit that too.&rdquo;</em></p>
       </div>
       <div class="outcome" id="s2_outcome_C">
-        <p class="outcome-text"><span class="outcome-label">C. Harder short-term target</span> &mdash; The 22-minute goal added pressure to something that had been enjoyable. Runs became tests. Sam started skipping sessions they might &ldquo;fail&rdquo; and only ran on days they felt fast. By December they were running once a fortnight.</p>
+        <div class="consequence-svg">
+          <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="60" cy="48" r="25" fill="var(--cream)" stroke="var(--brown)" stroke-width="3"/>
+            <rect x="48" y="73" width="24" height="14" rx="2" fill="var(--cream)" stroke="var(--brown)" stroke-width="3"/>
+            <line x1="50" y1="79" x2="70" y2="79" stroke="var(--brown)" stroke-width="2"/>
+            <line x1="50" y1="83" x2="70" y2="83" stroke="var(--brown)" stroke-width="2"/>
+            <line x1="60" y1="14" x2="60" y2="6" stroke="var(--brown-light)" stroke-width="1.5" opacity="0.3"/>
+            <line x1="84" y1="30" x2="91" y2="24" stroke="var(--brown-light)" stroke-width="1.5" opacity="0.25"/>
+            <line x1="36" y1="30" x2="29" y2="24" stroke="var(--brown-light)" stroke-width="1.5" opacity="0.25"/>
+            <line x1="90" y1="48" x2="98" y2="48" stroke="var(--brown-light)" stroke-width="1.5" opacity="0.15"/>
+            <line x1="30" y1="48" x2="22" y2="48" stroke="var(--brown-light)" stroke-width="1.5" opacity="0.15"/>
+          </svg>
+        </div>
+        <p class="outcome-text"><span class="outcome-label">C. Harder short-term target</span>: The 22-minute goal added pressure to something that had been enjoyable. Runs became tests. Sam started skipping sessions they might &ldquo;fail&rdquo; and only ran on days they felt fast. By December they were running once a fortnight.</p>
       </div>
       <div class="callout">
-        <p><strong>The pattern:</strong> Sam&rsquo;s goal had no structure between &ldquo;I want to be fit&rdquo; and a specific race distance. When the aggressive target collided with real life, there was nothing to fall back on. Hitting it meant overreach; missing it meant failure; and achieving the smaller milestone (5K) felt like a ceiling, not a foundation.</p>
+        <p><strong>The pattern:</strong> Sam&rsquo;s goal lacked structure between &ldquo;I want to be fit&rdquo; and a specific race distance. When the aggressive target collided with real life, there was nothing to fall back on. Hitting it meant overreach; missing it meant failure; and achieving the smaller milestone (5K) felt like a ceiling rather than a foundation.</p>
       </div>
     </div>
     <button onclick="showScreen('s2_discuss')">Discuss &rarr;</button>
@@ -556,10 +696,9 @@ button:focus-visible {
   <div class="motif motif-triangle"></div>
   <div class="content">
     <h2>To the room:</h2>
-    <p class="discuss-prompt">Sam could run 5K &mdash; that&rsquo;s a real achievement. Why didn&rsquo;t it feel like one?</p>
+    <p class="discuss-prompt">Sam could run 5K, a real achievement. Why did it feel hollow?</p>
     <p class="discuss-prompt">What was missing between &ldquo;I want to be fit&rdquo; and &ldquo;run a half marathon&rdquo;?</p>
-    <p class="facilitator-note">[Facilitator: allow 90 seconds of discussion. Do not resolve &mdash; name the tension and move on.]</p>
-    <button onclick="showScreen('s3_setup')">Meet the last student &rarr;</button>
+    <button onclick="showScreen('s3_setup')">Meet the next student &rarr;</button>
   </div>
 </div>
 
@@ -568,7 +707,21 @@ button:focus-visible {
 <div class="screen" id="s3_setup">
   <div class="motif motif-cross"></div>
   <div class="content">
-    <p><strong>Jordan</strong> is a talented photographer. They&rsquo;ve done it since they were 14 &mdash; it&rsquo;s the thing that makes them feel most like themselves. At university, Jordan sees classmates starting side projects and thinks: <em>&ldquo;I should make this count for something.&rdquo;</em></p>
+    <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto 1.5rem;">
+      <text x="110" y="140" font-family="Georgia, serif" font-size="120" font-weight="700" fill="var(--burgundy)" opacity="0.3">&pound;</text>
+      <rect x="55" y="105" width="45" height="32" rx="3" fill="var(--cream)" stroke="var(--brown)" stroke-width="3" stroke-linejoin="round"/>
+      <circle cx="67" cy="121" r="8" fill="none" stroke="var(--brown)" stroke-width="2"/>
+      <rect x="82" y="112" width="12" height="6" rx="1" fill="none" stroke="var(--brown)" stroke-width="2"/>
+      <line x1="77" y1="105" x2="77" y2="95" stroke="var(--brown)" stroke-width="3" stroke-linecap="round"/>
+      <line x1="77" y1="95" x2="82" y2="92" stroke="var(--brown)" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="50" cy="80" r="12" stroke="var(--brown)" stroke-width="3" fill="var(--cream)"/>
+      <line x1="50" y1="92" x2="50" y2="125" stroke="var(--brown)" stroke-width="3" stroke-linecap="round"/>
+      <path d="M50 100 Q60 108 65 105" stroke="var(--brown)" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M50 100 Q40 108 38 115" stroke="var(--brown)" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <line x1="46" y1="125" x2="40" y2="155" stroke="var(--brown)" stroke-width="3" stroke-linecap="round"/>
+      <line x1="54" y1="125" x2="60" y2="155" stroke="var(--brown)" stroke-width="3" stroke-linecap="round"/>
+    </svg>
+    <p><strong>Jordan</strong> is a talented photographer. They&rsquo;ve done it since they were 14; it&rsquo;s the thing that makes them feel most like themselves. At university, Jordan sees classmates starting side projects and thinks: <em>&ldquo;I should make this count for something.&rdquo;</em></p>
     <p>In their coaching meeting, Jordan sets a goal: <strong>Earn &pound;500 from photography by the end of semester one.</strong></p>
     <p>By week 9, Jordan has earned &pound;310. Three weeks remain. The goal is slipping.</p>
     <button onclick="showScreen('s3_vote')">What should Jordan do? &rarr;</button>
@@ -579,10 +732,10 @@ button:focus-visible {
   <div class="motif motif-cross"></div>
   <div class="content">
     <h2>What should Jordan do?</h2>
-    <button class="vote-btn" onclick="vote('s3','A')"><strong>A.</strong> Take any paid work available &mdash; corporate headshots, event coverage, whatever pays &mdash; and grind to hit &pound;500.</button>
+    <button class="vote-btn" onclick="vote('s3','A')"><strong>A.</strong> Take any paid work available: corporate headshots, event coverage, whatever pays. Grind to hit &pound;500.</button>
     <button class="vote-btn" onclick="vote('s3','B')"><strong>B.</strong> Lower the target to &pound;350 so success is still possible.</button>
     <button class="vote-btn" onclick="vote('s3','C')"><strong>C.</strong> Forget the number. Shoot what they love and let opportunities come naturally.</button>
-    <p class="instruction">Teacher: ask for a show of hands, then click the majority choice.</p>
+    <p class="vote-heading">Vote now.</p>
   </div>
 </div>
 
@@ -592,16 +745,47 @@ button:focus-visible {
     <h2>What actually happened</h2>
     <div class="reveal-body">
       <div class="outcome" id="s3_outcome_A">
-        <p class="outcome-text"><span class="outcome-label">A. Grind to &pound;500</span> &mdash; Jordan took three corporate jobs in two weeks. The work was tedious. They delivered acceptable but uninspired photos and started cutting corners on editing to meet deadlines. They hit &pound;510 &mdash; and didn&rsquo;t pick up a camera for pleasure for the next two months. The thing they loved became the thing they resented.</p>
+        <div class="consequence-svg">
+          <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M42 95 L48 108 L72 108 L78 95 Z" fill="var(--cream)" stroke="var(--brown)" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M60 95 Q60 65 46 48" fill="none" stroke="var(--brown)" stroke-width="3" stroke-linecap="round"/>
+            <ellipse cx="38" cy="44" rx="14" ry="7" fill="var(--ochre)" stroke="var(--brown)" stroke-width="2" transform="rotate(-35 38 44)"/>
+            <circle cx="36" cy="35" r="7" fill="var(--ochre)" stroke="var(--brown)" stroke-width="2"/>
+          </svg>
+        </div>
+        <p class="outcome-text"><span class="outcome-label">A. Grind to &pound;500</span>: Jordan took three corporate jobs in two weeks. The work was tedious. They delivered acceptable but uninspired photos and started cutting corners on editing to meet deadlines. They hit &pound;510. The camera sat untouched for the next two months. The thing they loved became the thing they resented.</p>
       </div>
       <div class="outcome" id="s3_outcome_B">
-        <p class="outcome-text"><span class="outcome-label">B. Lower the target</span> &mdash; Jordan hit &pound;380 and technically &ldquo;succeeded.&rdquo; But it felt hollow. The adjusted goal felt like an admission of inadequacy, and the entire semester&rsquo;s photography was now framed by a number rather than by growth, creativity, or identity.</p>
+        <div class="consequence-svg">
+          <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M35 20 L35 60 Q60 80 85 60 L85 20 Z" fill="var(--cream)" stroke="var(--brown)" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M35 32 Q18 42 35 52" fill="none" stroke="var(--brown)" stroke-width="3" stroke-linecap="round"/>
+            <path d="M85 32 Q102 42 85 52" fill="none" stroke="var(--brown)" stroke-width="3" stroke-linecap="round"/>
+            <rect x="50" y="72" width="20" height="14" fill="var(--cream)" stroke="var(--brown)" stroke-width="3"/>
+            <rect x="40" y="86" width="40" height="8" rx="1" fill="var(--cream)" stroke="var(--brown)" stroke-width="3"/>
+            <path d="M50 28 L48 42 L55 50 L50 65" fill="none" stroke="var(--brown)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <p class="outcome-text"><span class="outcome-label">B. Lower the target</span>: Jordan hit &pound;380 and technically &ldquo;succeeded.&rdquo; But it felt hollow. The adjusted goal felt like an admission of inadequacy, and the entire semester&rsquo;s photography was now framed by a number rather than by growth, creativity, or identity.</p>
       </div>
       <div class="outcome" id="s3_outcome_C">
-        <p class="outcome-text"><span class="outcome-label">C. Forget the number</span> &mdash; Jordan felt guilty about abandoning a goal. In their next coaching meeting, they couldn&rsquo;t articulate what they&rsquo;d achieved. Without any structure, &ldquo;shoot what I love&rdquo; produced great photos but no development direction, and Jordan struggled to explain their progress.</p>
+        <div class="consequence-svg">
+          <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="60" cy="48" r="25" fill="var(--cream)" stroke="var(--brown)" stroke-width="3"/>
+            <rect x="48" y="73" width="24" height="14" rx="2" fill="var(--cream)" stroke="var(--brown)" stroke-width="3"/>
+            <line x1="50" y1="79" x2="70" y2="79" stroke="var(--brown)" stroke-width="2"/>
+            <line x1="50" y1="83" x2="70" y2="83" stroke="var(--brown)" stroke-width="2"/>
+            <line x1="60" y1="14" x2="60" y2="6" stroke="var(--brown-light)" stroke-width="1.5" opacity="0.3"/>
+            <line x1="84" y1="30" x2="91" y2="24" stroke="var(--brown-light)" stroke-width="1.5" opacity="0.25"/>
+            <line x1="36" y1="30" x2="29" y2="24" stroke="var(--brown-light)" stroke-width="1.5" opacity="0.25"/>
+            <line x1="90" y1="48" x2="98" y2="48" stroke="var(--brown-light)" stroke-width="1.5" opacity="0.15"/>
+            <line x1="30" y1="48" x2="22" y2="48" stroke="var(--brown-light)" stroke-width="1.5" opacity="0.15"/>
+          </svg>
+        </div>
+        <p class="outcome-text"><span class="outcome-label">C. Forget the number</span>: Jordan felt guilty about abandoning a goal. In their next coaching meeting, they struggled to articulate what they&rsquo;d achieved. Without any structure, &ldquo;shoot what I love&rdquo; produced great photos but zero development direction, and Jordan could not explain their progress.</p>
       </div>
       <div class="callout">
-        <p><strong>The pattern:</strong> Jordan attached a financial metric to something driven by identity and love of the craft. The extrinsic target didn&rsquo;t support the intrinsic motivation &mdash; it replaced it. When the number came under pressure, Jordan faced a choice between compromising their standards or compromising their goal. No version of the &pound;500 target could solve this, because the target itself was the problem.</p>
+        <p><strong>The pattern:</strong> Jordan attached a financial metric to something driven by identity and love of the craft. The extrinsic target displaced the intrinsic motivation. When the number came under pressure, Jordan faced a choice between compromising their standards or compromising their goal. Every version of the &pound;500 target carried this flaw: the target itself was the source of the conflict.</p>
       </div>
     </div>
     <button onclick="showScreen('s3_discuss')">Discuss &rarr;</button>
@@ -612,9 +796,124 @@ button:focus-visible {
   <div class="motif motif-cross"></div>
   <div class="content">
     <h2>To the room:</h2>
-    <p class="discuss-prompt">Jordan cares about photography. That didn&rsquo;t change. So why did every option feel wrong?</p>
-    <p class="discuss-prompt">Is the issue the specific number &mdash; or is it where the goal was aimed?</p>
-    <p class="facilitator-note">[Facilitator: allow 90 seconds of discussion. Do not resolve &mdash; name the tension and move on.]</p>
+    <p class="discuss-prompt">Jordan still cares about photography. So why did every option feel wrong?</p>
+    <p class="discuss-prompt">Is the issue the specific number, or is it where the goal was aimed?</p>
+    <button onclick="showScreen('s4_setup')">One more scenario &rarr;</button>
+  </div>
+</div>
+
+<!-- SCENARIO 4: The Numbers Game -->
+
+<div class="screen" id="s4_setup">
+  <div class="motif motif-s4"></div>
+  <div class="content">
+    <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto 1.5rem;">
+      <rect x="80" y="110" width="40" height="35" rx="2" fill="var(--cream)" stroke="var(--brown)" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M80 130 L72 145 L80 145" fill="var(--cream)" stroke="var(--brown)" stroke-width="2" stroke-linejoin="round"/>
+      <path d="M120 130 L128 145 L120 145" fill="var(--cream)" stroke="var(--brown)" stroke-width="2" stroke-linejoin="round"/>
+      <circle cx="100" cy="98" r="12" stroke="var(--brown)" stroke-width="3" fill="var(--cream)"/>
+      <path d="M112 105 L125 98 L135 95" stroke="var(--brown)" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <polygon points="135,95 145,88 145,102" fill="var(--cream)" stroke="var(--brown)" stroke-width="2" stroke-linejoin="round"/>
+      <rect x="25" y="160" width="18" height="18" rx="1" fill="none" stroke="var(--brown)" stroke-width="2" opacity="0.4"/>
+      <rect x="50" y="160" width="18" height="18" rx="1" fill="none" stroke="var(--brown)" stroke-width="2" opacity="0.4"/>
+      <rect x="75" y="160" width="18" height="18" rx="1" fill="none" stroke="var(--brown)" stroke-width="2" opacity="0.4"/>
+      <rect x="100" y="160" width="18" height="18" rx="1" fill="none" stroke="var(--brown)" stroke-width="2" opacity="0.4"/>
+      <rect x="125" y="160" width="18" height="18" rx="1" fill="none" stroke="var(--brown)" stroke-width="2" opacity="0.4"/>
+      <rect x="150" y="160" width="18" height="18" rx="1" fill="none" stroke="var(--brown)" stroke-width="2" opacity="0.4"/>
+      <rect x="37" y="182" width="18" height="18" rx="1" fill="none" stroke="var(--brown)" stroke-width="2" opacity="0.3"/>
+      <rect x="62" y="182" width="18" height="18" rx="1" fill="none" stroke="var(--brown)" stroke-width="2" opacity="0.3"/>
+      <rect x="87" y="182" width="18" height="18" rx="1" fill="none" stroke="var(--brown)" stroke-width="2" opacity="0.3"/>
+      <rect x="112" y="182" width="18" height="18" rx="1" fill="none" stroke="var(--brown)" stroke-width="2" opacity="0.3"/>
+      <rect x="137" y="182" width="18" height="18" rx="1" fill="none" stroke="var(--brown)" stroke-width="2" opacity="0.3"/>
+      <text x="72" y="65" font-family="'Inter','Helvetica Neue',Arial,sans-serif" font-size="42" font-weight="700" stroke="var(--brown)" stroke-width="1" fill="url(#s4grad)">80</text>
+      <defs>
+        <linearGradient id="s4grad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="var(--purple)"/>
+          <stop offset="100%" stop-color="var(--orange)"/>
+        </linearGradient>
+      </defs>
+    </svg>
+    <p><strong>Riley</strong> is president of the university Entrepreneurship Society. Membership has been flat at 40 for a year. The student union warns that funding will be cut unless numbers improve significantly.</p>
+    <p>Riley sets a goal: <strong>&ldquo;Double membership to 80 by end of semester.&rdquo;</strong></p>
+    <p>By week 7, membership is at 52. The next big event is in two weeks.</p>
+    <button onclick="showScreen('s4_vote')">What should Riley do? &rarr;</button>
+  </div>
+</div>
+
+<div class="screen" id="s4_vote">
+  <div class="motif motif-s4"></div>
+  <div class="content">
+    <h2>What should Riley do?</h2>
+    <button class="vote-btn" onclick="vote('s4','A')"><strong>A.</strong> Offer free pizza, giveaways, and raffle prizes at every event to pull in sign-ups.</button>
+    <button class="vote-btn" onclick="vote('s4','B')"><strong>B.</strong> Count anyone who attends a single event as a &ldquo;member&rdquo; to reach the target on paper.</button>
+    <button class="vote-btn" onclick="vote('s4','C')"><strong>C.</strong> Focus on making events genuinely better and accept whatever number results.</button>
+    <p class="vote-heading">Vote now.</p>
+  </div>
+</div>
+
+<div class="screen" id="s4_reveal">
+  <div class="motif motif-s4"></div>
+  <div class="content">
+    <h2>What actually happened</h2>
+    <div class="reveal-body">
+      <div class="outcome" id="s4_outcome_A">
+        <div class="consequence-svg">
+          <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="15" y="12" width="90" height="80" fill="var(--cream)" stroke="var(--brown)" stroke-width="3" rx="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="15" y1="82" x2="105" y2="82" stroke="var(--brown)" stroke-width="2"/>
+            <rect x="35" y="60" width="16" height="14" rx="1" fill="none" stroke="var(--brown-light)" stroke-width="2" opacity="0.4"/>
+            <rect x="58" y="60" width="16" height="14" rx="1" fill="none" stroke="var(--brown-light)" stroke-width="2" opacity="0.4"/>
+            <rect x="81" y="60" width="16" height="14" rx="1" fill="none" stroke="var(--brown-light)" stroke-width="2" opacity="0.3"/>
+            <rect x="35" y="38" width="16" height="14" rx="1" fill="none" stroke="var(--brown-light)" stroke-width="2" opacity="0.3"/>
+            <rect x="58" y="38" width="16" height="14" rx="1" fill="none" stroke="var(--brown-light)" stroke-width="2" opacity="0.2"/>
+            <rect x="81" y="38" width="16" height="14" rx="1" fill="none" stroke="var(--brown-light)" stroke-width="2" opacity="0.2"/>
+          </svg>
+        </div>
+        <p class="outcome-text"><span class="outcome-label">A. Free pizza and giveaways</span>: Membership hit 85. But 50 of those people came once for free food and never returned. Core members felt the society had lost its purpose. Next semester, active attendance dropped below 30: lower than where Riley started.</p>
+      </div>
+      <div class="outcome" id="s4_outcome_B">
+        <div class="consequence-svg">
+          <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M35 20 L35 60 Q60 80 85 60 L85 20 Z" fill="var(--cream)" stroke="var(--brown)" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M35 32 Q18 42 35 52" fill="none" stroke="var(--brown)" stroke-width="3" stroke-linecap="round"/>
+            <path d="M85 32 Q102 42 85 52" fill="none" stroke="var(--brown)" stroke-width="3" stroke-linecap="round"/>
+            <rect x="50" y="72" width="20" height="14" fill="var(--cream)" stroke="var(--brown)" stroke-width="3"/>
+            <rect x="40" y="86" width="40" height="8" rx="1" fill="var(--cream)" stroke="var(--brown)" stroke-width="3"/>
+            <path d="M50 28 L48 42 L55 50 L50 65" fill="none" stroke="var(--brown)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <p class="outcome-text"><span class="outcome-label">B. Counting single-event attendees</span>: Riley reported 83 members to the student union. Funding was secured. But the number was fiction, and the whole committee knew it. A culture of &ldquo;hit the metric, sort out reality later&rdquo; set in. When the society needed engaged members to run a startup weekend, 12 people showed up.</p>
+      </div>
+      <div class="outcome" id="s4_outcome_C">
+        <div class="consequence-svg">
+          <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="60" cy="48" r="25" fill="var(--cream)" stroke="var(--brown)" stroke-width="3"/>
+            <rect x="48" y="73" width="24" height="14" rx="2" fill="var(--cream)" stroke="var(--brown)" stroke-width="3"/>
+            <line x1="50" y1="79" x2="70" y2="79" stroke="var(--brown)" stroke-width="2"/>
+            <line x1="50" y1="83" x2="70" y2="83" stroke="var(--brown)" stroke-width="2"/>
+            <line x1="60" y1="14" x2="60" y2="6" stroke="var(--brown-light)" stroke-width="1.5" opacity="0.3"/>
+            <line x1="84" y1="30" x2="91" y2="24" stroke="var(--brown-light)" stroke-width="1.5" opacity="0.25"/>
+            <line x1="36" y1="30" x2="29" y2="24" stroke="var(--brown-light)" stroke-width="1.5" opacity="0.25"/>
+            <line x1="90" y1="48" x2="98" y2="48" stroke="var(--brown-light)" stroke-width="1.5" opacity="0.15"/>
+            <line x1="30" y1="48" x2="22" y2="48" stroke="var(--brown-light)" stroke-width="1.5" opacity="0.15"/>
+          </svg>
+        </div>
+        <p class="outcome-text"><span class="outcome-label">C. Better events, accept the number</span>: Events improved. Membership reached 58. The student union cut funding by 30%. Riley felt punished for doing the right thing. The lesson they internalised: integrity is penalised. They stopped volunteering for leadership roles.</p>
+      </div>
+      <div class="callout">
+        <p><strong>The pattern:</strong> The society existed to build a community around entrepreneurship. The membership number served as a proxy for that purpose, a stand-in for the real mission. When the proxy became the goal, every path led to either gaming the metric or suffering for refusing to.</p>
+      </div>
+    </div>
+    <button onclick="showScreen('s4_discuss')">Discuss &rarr;</button>
+  </div>
+</div>
+
+<div class="screen" id="s4_discuss">
+  <div class="motif motif-s4"></div>
+  <div class="content">
+    <h2>To the room:</h2>
+    <p class="discuss-prompt">What was the Entrepreneurship Society actually for?</p>
+    <p class="discuss-prompt">How did the membership target change what Riley was willing to do?</p>
     <button onclick="showScreen('debrief')">See the full picture &rarr;</button>
   </div>
 </div>
@@ -626,15 +925,17 @@ button:focus-visible {
       <div class="dc-circle"></div>
       <div class="dc-triangle"></div>
       <div class="dc-cross"></div>
+      <div class="dc-diamond"></div>
     </div>
-    <h2>Three students. Nine options. Zero good outcomes.</h2>
+    <h2>Four goals. Twelve options. Zero good outcomes.</h2>
     <p>Every goal was specific. Most were challenging. Several were measurable and time-bound. By every conventional standard, these were &ldquo;good&rdquo; goals.</p>
     <p>Yet each one produced the same kinds of failure: tunnel vision, collapsed motivation, abandoned progress, eroded confidence, compromised standards.</p>
-    <p>The problem was never the goal itself. It was what was missing around it.</p>
+    <p>The problem lay in what was missing around each goal.</p>
     <div style="text-align: left; max-width: 700px; margin: 1.5rem auto 0;">
       <p class="scenario-line"><span class="icon-purple">&#9679;</span> Alex measured one thing and lost everything else.</p>
-      <p class="scenario-line"><span class="icon-orange">&#9650;</span> Sam had a destination but no route &mdash; and no reason to keep walking when the destination moved.</p>
-      <p class="scenario-line"><span class="icon-burgundy">+</span> Jordan pointed a performance target at an identity &mdash; and the identity buckled.</p>
+      <p class="scenario-line"><span class="icon-orange">&#9650;</span> Sam had a destination with no route, and no reason to keep walking when the destination moved.</p>
+      <p class="scenario-line"><span class="icon-burgundy">+</span> Jordan pointed a performance target at an identity, and the identity buckled.</p>
+      <p class="scenario-line"><span class="icon-s4">&#9670;</span> Riley turned a community into a number, and the community dissolved.</p>
     </div>
     <p class="final-line">Next: a better architecture for goals.</p>
   </div>
@@ -643,7 +944,7 @@ button:focus-visible {
 <script>
 var state = {
   currentScreen: 'title',
-  choices: { s1: null, s2: null, s3: null }
+  choices: { s1: null, s2: null, s3: null, s4: null }
 };
 
 function showScreen(id) {
@@ -656,9 +957,10 @@ function showScreen(id) {
   if (target) {
     target.classList.add('active');
   }
-  if (id === 's1_reveal') highlightChoice('s1');
-  if (id === 's2_reveal') highlightChoice('s2');
-  if (id === 's3_reveal') highlightChoice('s3');
+  if (id === 's1_reveal') showChosenOutcome('s1');
+  if (id === 's2_reveal') showChosenOutcome('s2');
+  if (id === 's3_reveal') showChosenOutcome('s3');
+  if (id === 's4_reveal') showChosenOutcome('s4');
 }
 
 function vote(scenario, choice) {
@@ -666,15 +968,18 @@ function vote(scenario, choice) {
   showScreen(scenario + '_reveal');
 }
 
-function highlightChoice(scenario) {
+function showChosenOutcome(scenario) {
   var choice = state.choices[scenario];
   var options = ['A', 'B', 'C'];
   for (var i = 0; i < options.length; i++) {
     var el = document.getElementById(scenario + '_outcome_' + options[i]);
     if (el) {
-      el.classList.remove('chosen-s1', 'chosen-s2', 'chosen-s3');
       if (options[i] === choice) {
+        el.style.display = 'block';
         el.classList.add('chosen-' + scenario);
+      } else {
+        el.style.display = 'none';
+        el.classList.remove('chosen-' + scenario);
       }
     }
   }
